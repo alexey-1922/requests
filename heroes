@@ -1,0 +1,16 @@
+from pprint import pprint
+
+import requests
+
+def main():
+  url = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json"
+  response = requests.get(url).json()
+  intel_heroes_dict = {}
+  for x in response:    
+    if x["name"] == "Captain America" or x["name"] == "Thanos" or x["name"] == "Hulk":
+      intel_heroes_dict[x["name"]] = x["powerstats"]["intelligence"]
+  max_val_key = max(intel_heroes_dict, key=intel_heroes_dict.get)
+  return max_val_key
+if __name__ == '__main__':
+    print(main())
+    
